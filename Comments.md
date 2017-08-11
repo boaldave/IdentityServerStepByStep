@@ -12,7 +12,7 @@
     "frontchannel_logout_supported": true,
     "frontchannel_logout_session_supported": true,
     "scopes_supported": [
-        "MyClaims",
+        "MyThings",
         "offline_access"
     ],
     "claims_supported": [],

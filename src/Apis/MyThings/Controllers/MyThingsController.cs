@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace MyClaims.Controllers
+namespace MyThings.Controllers
 {
     [Route("api/[controller]")]
-    public class MyClaimsController : Controller
+    public class MyThingsController : Controller
     {
-        // GET api/myclaims
+        // GET api/mythings
         [Authorize]
         [HttpGet]
         public IActionResult Get()
@@ -20,7 +20,7 @@ namespace MyClaims.Controllers
             return list;
         }
 
-       // GET api/myclaims/5
+       // GET api/mythings/5
        // [Authorize]
        // [HttpGet("{id}")]
        // public IActionResult Get(string id)
@@ -29,19 +29,19 @@ namespace MyClaims.Controllers
        //     return item;
        // }
 
-       // POST api/myclaims
+       // POST api/mythings
        //[HttpPost]
        // public void Post([FromBody]string value)
        // {
        // }
 
-       // PUT api/myclaims/5
+       // PUT api/mythings/5
        // [HttpPut("{id}")]
        // public void Put(int id, [FromBody]string value)
        // {
        // }
 
-       // DELETE api/myclaims/5
+       // DELETE api/mythings/5
        // [HttpDelete("{id}")]
        // public void Delete(int id)
        // {

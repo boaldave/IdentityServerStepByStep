@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace MyClaims
+namespace MyThings
 {
     public class Startup
     {
@@ -51,7 +51,7 @@ namespace MyClaims
                 Authority = "http://localhost:5000",
                 RequireHttpsMetadata = false,
 
-                ApiName = "MyClaims"
+                ApiName = "MyThings"
             });
 
             app.UseMvc();

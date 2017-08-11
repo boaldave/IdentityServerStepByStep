@@ -13,7 +13,7 @@ namespace IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("MyClaims", "My Claims Service")
+                new ApiResource("MyThings", "My Things Service")
             };
         }
 
@@ -99,18 +99,18 @@ namespace IdentityServer
                 //        IdentityServerConstants.StandardScopes.Profile
                 //    }
                 //}
-                //// OpenID Connect implicit flow Resource Service (MyClaims API)
+                //// OpenID Connect implicit flow Resource Service (MyThings API)
                 //new Client
                 //{
-                //    ClientId = "MyClaims",
-                //    ClientName = "MyClaims Service: Token Inspection",
+                //    ClientId = "MyThings",
+                //    ClientName = "MyThings Service: Token Inspection",
                 //    AllowedGrantTypes = GrantTypes.Implicit,
                 //    ClientSecrets =
                 //    {
                 //        new Secret("MVCApiConsumer.Secret".Sha256())
                 //    },
                 //    RedirectUris = { "http://localhost:5000/signin-oidc" },
-                //    PostLogoutRedirectUris = { "http://localhost:6006/signout-callback-oidc" },
+                //    PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc" },
 
                 //    AllowedScopes =
                 //    {

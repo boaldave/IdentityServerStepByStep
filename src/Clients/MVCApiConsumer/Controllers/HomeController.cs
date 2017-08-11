@@ -32,8 +32,26 @@ namespace MVCClientConsumesAPI.Controllers
 
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             var tokenClient = new TokenClient(disco.TokenEndpoint, "MVCApiConsumer", "MVCApiConsumer.Secret");
-            //var tokenClient = new TokenClient(disco.TokenEndpoint, "MyClaims", AuthenticationStyle.PostValues);
-            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("MyClaims");
+            //var tokenClient = new TokenClient(disco.TokenEndpoint, "MyThings", AuthenticationStyle.PostValues);
+            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("MyThings");
+
+            //var tokenResponseAuthCode = await tokenClient.RequestAuthorizationCodeAsync("123", "redirectUrl", "codeVerifier", (object)("extra"), new System.Threading.CancellationToken());
+
+            // See also:
+            // tokenClient.RequestClientCredentialsAsync - Requests a token using client creds
+            // tokenClient.RequestResourceOwnerPasswordAsync - Requests a token using res owner password creds.
+            // tokenClient.RequestAuthorizationCodeAsync - Requests a token using authorization code.
+            // tokenClient.RequestAuthorizationCodePopAsync - Requests a PoP token using an authorization code.
+            // tokenClient.RequestRefreshTokenAsync
+            // tokenClient.RequestRefreshTokenPopAsync
+            // tokenClient.RequestAssertionAsync
+            // tokenClient.RequestCustomGrantAsync - Requests a token using a custom grant.
+            // tokenClient.RequestRefreshTokenAsync - Requests a token using a custom request
+
+            // See also:
+            // All the same methods on TokenClientExtensions.
+
+
 
             if (tokenResponse.IsError)
             {
