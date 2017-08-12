@@ -51,8 +51,6 @@ namespace MVCClientConsumesAPI.Controllers
             // See also:
             // All the same methods on TokenClientExtensions.
 
-
-
             if (tokenResponse.IsError)
             {
                 ViewData["Message"] = tokenResponse.Error;
@@ -68,7 +66,8 @@ namespace MVCClientConsumesAPI.Controllers
                 client.SetBearerToken(tokenResponse.AccessToken);
             }
 
-            var response = await client.GetAsync("http://localhost:5000/identity");
+            // Api Endpoint
+            var response = await client.GetAsync("http://localhost:5001/api/mythings");
             ViewData["APIResponseCode"] = response.StatusCode.ToString();
             if (!response.IsSuccessStatusCode)
             {
