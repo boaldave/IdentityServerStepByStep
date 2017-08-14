@@ -40,7 +40,8 @@ namespace IdentityServer
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "MyThings"
                     }
                 },
                 // OpenID Connect implicit flow client (WebForms)
@@ -48,7 +49,8 @@ namespace IdentityServer
                 {
                     ClientId = "WebFormsClient",
                     ClientName = "WebForms Client: Token Request, Token Validation, Token Inspection",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    //AllowedGrantTypes = GrantTypes.Implicit,
                     ClientSecrets =
                     {
                         new Secret("WebFormsClient.Secret".Sha256())
@@ -59,7 +61,8 @@ namespace IdentityServer
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "MyThings"
                     }
                 },
                 // OpenID Connect implicit flow client (MVC)
@@ -67,7 +70,8 @@ namespace IdentityServer
                 {
                     ClientId = "MVCApiConsumer",
                     ClientName = "MVCApiConsumer Client: Token Request, Token Validation, Token Inspection",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    //AllowedGrantTypes = GrantTypes.Implicit,
                     ClientSecrets =
                     {
                         new Secret("MVCApiConsumer.Secret".Sha256())
@@ -77,7 +81,8 @@ namespace IdentityServer
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "MyThings"
                     }
                 }
                 //// OpenID Connect implicit flow client (WebApiClient) - a WebClient 

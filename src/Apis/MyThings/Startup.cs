@@ -51,9 +51,7 @@ namespace MyThings
                 Authority = "http://localhost:5000",
                 RequireHttpsMetadata = false,
 
-                ApiName = "MyThings",
-                ApiSecret = "MyThings.Secret"
-
+                ApiName = "MyThings"
             });
 
             app.UseMvc();

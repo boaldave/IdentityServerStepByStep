@@ -31,7 +31,7 @@ namespace MVCClientConsumesAPI.Controllers
             ViewData["UsersClaimsJson"] = "";
 
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "MVCApiConsumer", "MVCApiConsumer.Secret");
+            var tokenClient = new TokenClient(disco.TokenEndpoint, "MVCApiConsumer","MVCApiConsumer.Secret", AuthenticationStyle.PostValues);
             //var tokenClient = new TokenClient(disco.TokenEndpoint, "MyThings", AuthenticationStyle.PostValues);
             var tokenResponse = await tokenClient.RequestClientCredentialsAsync("MyThings");
 

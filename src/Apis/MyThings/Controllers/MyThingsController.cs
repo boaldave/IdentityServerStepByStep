@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 namespace MyThings.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class MyThingsController : ControllerBase
     {
         // GET api/mythings
-        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

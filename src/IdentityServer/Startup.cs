@@ -22,8 +22,9 @@ namespace IdentityServer
             services.AddIdentityServer()
                 .AddTemporarySigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients());
-
+                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryIdentityResources(Config.GetIdentityResources());
+                
             services.AddMvc();
         }
 
