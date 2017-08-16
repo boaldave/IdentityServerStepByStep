@@ -1,4 +1,5 @@
-﻿<div>
+﻿@using Microsoft.AspNetCore.Authentication;
+<div>
     <div class="row">
         <p>
             @ViewData["Message"]
@@ -19,4 +20,24 @@
             @ViewData["UsersClaimsJson"]
         </p>
     </div>
+
+    <dl>
+        @foreach (var claim in User.Claims)
+        {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+        }
+    </dl>
+    <dl>
+        <dt>access token</dt>
+        <dd>@await ViewContext.HttpContext.Authentication.GetTokenAsync("access_token")</dd>
+
+        <dt>refresh token</dt>
+        <dd>@await ViewContext.HttpContext.Authentication.GetTokenAsync("refresh_token")</dd>
+    </dl>
+
+    <form asp-controller="Home" asp-action="Logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
 </div>

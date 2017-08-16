@@ -23,7 +23,12 @@ namespace IdentityServer
                 .AddTemporarySigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
-                .AddInMemoryIdentityResources(Config.GetIdentityResources());
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+
+                //add support for the User-based Grant
+                //adds support to user related services typically used by a login UI
+                //adds support for a profile service based on the test users
+                .AddTestUsers(Config.GetUsers());
                 
             services.AddMvc();
         }

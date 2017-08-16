@@ -49,8 +49,8 @@ namespace IdentityServer
                 {
                     ClientId = "WebFormsClient",
                     ClientName = "WebForms Client: Token Request, Token Validation, Token Inspection",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    //AllowedGrantTypes = GrantTypes.Implicit,
+                    //AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedGrantTypes = GrantTypes.Implicit,
                     ClientSecrets =
                     {
                         new Secret("WebFormsClient.Secret".Sha256())
@@ -70,20 +70,23 @@ namespace IdentityServer
                 {
                     ClientId = "MVCApiConsumer",
                     ClientName = "MVCApiConsumer Client: Token Request, Token Validation, Token Inspection",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    //AllowedGrantTypes = GrantTypes.Implicit,
+                    //AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets =
                     {
                         new Secret("MVCApiConsumer.Secret".Sha256())
                     },
-                    RedirectUris = { "http://localhost:5000/signin-oidc" },
+                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                    RedirectUris = { "http://localhost:6004/signin-oidc" },
                     PostLogoutRedirectUris = { "http://localhost:6004/signout-callback-oidc" },
+                    //configure which scopes will allowed be be sent to IdentityServer during authentication
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "MyThings"
-                    }
+                    },
+                    //the offline_access scope allows requesting refresh tokens for long lived API access.
+                    AllowOfflineAccess = true
                 }
                 //// OpenID Connect implicit flow client (WebApiClient) - a WebClient 
                 //new Client
@@ -163,9 +166,19 @@ namespace IdentityServer
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.Profile()
+
+                //profile
+                //OPTIONAL. This scope value requests access to the End-User's default profile Claims, which are: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate, zoneinfo, locale, and updated_at.
+                //email
+                //OPTIONAL. This scope value requests access to the email and email_verified Claims.
+                //address
+                //OPTIONAL. This scope value requests access to the address Claim.
+                //phone
+                //OPTIONAL. This scope value requests access to the phone_number and phone_number_verified Claims.
+ 
             };
         }
-
     }
 }
+

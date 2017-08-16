@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace MVCClientConsumesAPI
 {
@@ -49,12 +50,47 @@ namespace MVCClientConsumesAPI
 
             app.UseStaticFiles();
 
+            // The combination of the following configs...
+            // UseCookieAuthentication,
+            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(),
+            //app.UseOpenIdConnectAuthentication 
+            // ... will cause 
+            // Browser to redirect to ID4 server on navigate to protected controller.
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "Cookies"
+
+            });
+
+            // The OpenID Connect middleware configuration needs pointer to your IdentityServer, a client ID and tell it which middleware will do the local signin (namely the cookies middleware). As well, turned off the JWT claim type mapping to allow well-known claims (e.g. ‘sub’ and ‘idp’) to flow through unmolested:
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            {
+                AuthenticationScheme = "oidc",
+                SignInScheme = "Cookies",
+
+                Authority = "http://localhost:5000",
+                RequireHttpsMetadata = false,
+
+                ClientId = "MVCApiConsumer",
+                ClientSecret = "MVCApiConsumer.Secret",
+
+                // The following settings mean “use hybrid flow”.
+                ResponseType = "code id_token",
+                Scope = { "MyThings", "offline_access" }, // offline_access matches setting in client def in ID4
+                GetClaimsFromUserInfoEndpoint = true, // tells the middleware to go to the user info endpoint to retrieve additional claims after getting an identity token.
+
+                SaveTokens = true
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }
