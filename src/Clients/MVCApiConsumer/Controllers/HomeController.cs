@@ -33,8 +33,8 @@ namespace MVCClientConsumesAPI.Controllers
             ViewData["APIResponseCode"] = "";
             ViewData["UsersClaimsJson"] = "";
 
-            var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "MVCApiConsumer","MVCApiConsumer.Secret", AuthenticationStyle.PostValues);
+            //var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
+            //var tokenClient = new TokenClient(disco.TokenEndpoint, "MVCApiConsumer","MVCApiConsumer.Secret", AuthenticationStyle.PostValues);
             //var tokenClient = new TokenClient(disco.TokenEndpoint, "MyThings", AuthenticationStyle.PostValues);
 
             //var tokenResponse = await tokenClient.RequestClientCredentialsAsync("MyThings");
@@ -72,6 +72,9 @@ namespace MVCClientConsumesAPI.Controllers
 
             // In this Hybrid Version, the token can be retrieved from the HTTP context instead of using the  DiscoveryClient and TokenClient like the previous version of this code did. The general idea is the same in both which is to get a token, use the token as part of a request to the API application, and finally display the response in a view.
             var accessToken = await HttpContext.Authentication.GetTokenAsync("access_token");
+            // https://github.com/IdentityServer/IdentityServer4/issues/863
+            // With Hybrid FLow, Access Token and Refresh Tokens being saved to a cookie by setting SaveToken = true and then using HttpContext.Authentication.GetTokenAsync to retrieve the tokens when needed.  The cookie is signed and encrypted.
+
             var client = new HttpClient();
             client.SetBearerToken(accessToken);
 

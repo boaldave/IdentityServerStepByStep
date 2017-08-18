@@ -77,7 +77,11 @@ namespace MVCClientConsumesAPI
 
                 // The following settings mean “use hybrid flow”.
                 ResponseType = "code id_token",
-                Scope = { "MyThings", "offline_access" }, // offline_access matches setting in client def in ID4
+                Scope = { "MyThings", "offline_access" },
+                // offline_access will return Refresh Token and requires a matching setting in client def in ID4
+                // Here are some other Scope Examples:
+                //    Scope = “openid email profile read write offline_access”
+                //       api access (read and write) 
                 GetClaimsFromUserInfoEndpoint = true, // tells the middleware to go to the user info endpoint to retrieve additional claims after getting an identity token.
 
                 SaveTokens = true
