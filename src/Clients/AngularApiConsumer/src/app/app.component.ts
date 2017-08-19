@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { OidcSecurityService } from './auth/services/oidc.security.service';
 
 @Component({
   selector: 'app-root',
